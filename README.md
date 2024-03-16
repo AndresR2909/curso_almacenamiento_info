@@ -6,6 +6,9 @@
 ## 1. Datasets de trabajo en la materia
 [datasets](datasets)
 
-## 2. laboratorios
+## 2. Contenido
 
-## 3. trabajos
+## 3. laboratorios
+[labs2](laboratorio 2)
+
+## 4. trabajos
