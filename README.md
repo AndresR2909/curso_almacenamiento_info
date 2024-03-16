@@ -15,3 +15,4 @@
 * [laboratorio 2](labs2)
 
 ## 4. trabajos
+* [trabajo 1](trabajo1)
