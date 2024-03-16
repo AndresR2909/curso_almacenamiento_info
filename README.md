@@ -9,6 +9,6 @@
 ## 2. Contenido
 
 ## 3. laboratorios
-[labs2](laboratorio 2)
+[labs2](labs2)
 
 ## 4. trabajos
