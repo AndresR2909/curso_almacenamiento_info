@@ -8,6 +8,10 @@
 
 ## 2. Contenido
 
+[hadoop_spark](hadoop_spark)
+[Preparacion de texto](text-prep)
+[Mineria de texto](text-mining)
+
 ## 3. laboratorios
 [labs2](labs2)
 
