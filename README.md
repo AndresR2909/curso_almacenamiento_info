@@ -12,7 +12,7 @@
 * [Mineria de texto](text-mining)
 
 ## 3. laboratorios
-* [laboratorio 2](labs2)
+* [laboratorio 2](lab2)
 
 ## 4. trabajos
 * [trabajo 1](trabajo1)
