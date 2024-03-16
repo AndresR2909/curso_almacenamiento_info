@@ -4,15 +4,15 @@
 
 
 ## 1. Datasets de trabajo en la materia
-[datasets](datasets)
+[Conjuntos datos](datasets)
 
 ## 2. Contenido
 
-[hadoop_spark](hadoop_spark)
-[Preparacion de texto](text-prep)
-[Mineria de texto](text-mining)
+* [hadoop_spark](hadoop_spark)
+* [Preparacion de texto](text-prep)
+* [Mineria de texto](text-mining)
 
 ## 3. laboratorios
-[labs2](labs2)
+* [laboratorio 2](labs2)
 
 ## 4. trabajos
