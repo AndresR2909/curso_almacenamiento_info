@@ -1,0 +1,155 @@
+-- crear bases de datos en el catalogo:
+
+CREATE DATABASE trabajo1_refineddb;
+CREATE DATABASE trabajo1_trusteddb;
+CREATE DATABASE  trabajo1_rawdb;
+
+-- tablas zona refined externa en S3: 
+use  trabajo1_refineddb;
+
+CREATE EXTERNAL TABLE agg_co2_level_sea (Year INT, Month INT, Monthly_Atmospheric_Carbon_Dioxide_Concentrations FLOAT, Change_in_mean_sea_level_Sea_level_Jason1 FLOAT, co2_range STRING) 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
+STORED AS TEXTFILE 
+LOCATION 's3://trabajo1datalake/refined/df_co2_level_sea/'
+TBLPROPERTIES ('skip.header.line.count'='1');
+
+CREATE EXTERNAL TABLE co2_level_sea (
+    Year INTEGER,
+    Month INTEGER,
+    Monthly_Atmospheric_Carbon_Dioxide_Concentrations DOUBLE,
+    Monthly_Atmospheric_Carbon_Dioxide_Concentrations_Year_on_Year_Percentage_Change DOUBLE,
+    Change_in_mean_sea_level_Sea_level_Jason1 DOUBLE,
+    Change_in_mean_sea_level_Sea_level_Jason2 DOUBLE,
+    Change_in_mean_sea_level_Sea_level_Jason3 DOUBLE,
+    Change_in_mean_sea_level_Sea_level_TOPEXPoseidon DOUBLE,
+    Change_in_mean_sea_level_Sea_level_Trend DOUBLE
+) 
+STORED AS PARQUET 
+LOCATION 's3://trabajo1datalake/refined/co2_and_level_sea/' 
+TBLPROPERTIES ('skip.header.line.count'='1');
+
+
+-- tablas zona trusted externa en S3: 
+use  trabajo1_trusteddb;
+
+CREATE EXTERNAL TABLE owid_co2_data (
+    country STRING,
+    year INT,
+    iso_code STRING,
+    population BIGINT,
+    gdp DOUBLE,
+    cement_co2 DOUBLE,
+    cement_co2_per_capita DOUBLE,
+    co2 DOUBLE,
+    co2_growth_abs DOUBLE,
+    co2_growth_prct DOUBLE,
+    co2_including_luc DOUBLE,
+    co2_including_luc_growth_abs DOUBLE,
+    co2_including_luc_growth_prct DOUBLE,
+    co2_including_luc_per_capita DOUBLE,
+    co2_including_luc_per_gdp DOUBLE,
+    co2_including_luc_per_unit_energy DOUBLE,
+    co2_per_capita DOUBLE,
+    co2_per_gdp DOUBLE,
+    co2_per_unit_energy DOUBLE,
+    coal_co2 DOUBLE,
+    coal_co2_per_capita DOUBLE,
+    consumption_co2 DOUBLE,
+    consumption_co2_per_capita DOUBLE,
+    consumption_co2_per_gdp DOUBLE,
+    cumulative_cement_co2 DOUBLE,
+    cumulative_co2 DOUBLE,
+    cumulative_co2_including_luc DOUBLE,
+    cumulative_coal_co2 DOUBLE,
+    cumulative_flaring_co2 DOUBLE,
+    cumulative_gas_co2 DOUBLE,
+    cumulative_luc_co2 DOUBLE,
+    cumulative_oil_co2 DOUBLE,
+    cumulative_other_co2 DOUBLE,
+    energy_per_capita DOUBLE,
+    energy_per_gdp DOUBLE,
+    flaring_co2 DOUBLE,
+    flaring_co2_per_capita DOUBLE,
+    gas_co2 DOUBLE,
+    gas_co2_per_capita DOUBLE,
+    ghg_excluding_lucf_per_capita DOUBLE,
+    ghg_per_capita DOUBLE,
+    land_use_change_co2 DOUBLE,
+    land_use_change_co2_per_capita DOUBLE,
+    methane DOUBLE,
+    methane_per_capita DOUBLE,
+    nitrous_oxide DOUBLE,
+    nitrous_oxide_per_capita DOUBLE,
+    oil_co2 DOUBLE,
+    oil_co2_per_capita DOUBLE,
+    other_co2_per_capita DOUBLE,
+    other_industry_co2 DOUBLE,
+    primary_energy_consumption DOUBLE,
+    share_global_cement_co2 DOUBLE,
+    share_global_co2 DOUBLE,
+    share_global_co2_including_luc DOUBLE,
+    share_global_coal_co2 DOUBLE,
+    share_global_cumulative_cement_co2 DOUBLE,
+    share_global_cumulative_co2 DOUBLE,
+    share_global_cumulative_co2_including_luc DOUBLE,
+    share_global_cumulative_coal_co2 DOUBLE,
+    share_global_cumulative_flaring_co2 DOUBLE,
+    share_global_cumulative_gas_co2 DOUBLE,
+    share_global_cumulative_luc_co2 DOUBLE,
+    share_global_cumulative_oil_co2 DOUBLE,
+    share_global_cumulative_other_co2 DOUBLE,
+    share_global_flaring_co2 DOUBLE,
+    share_global_gas_co2 DOUBLE,
+    share_global_luc_co2 DOUBLE,
+    share_global_oil_co2 DOUBLE,
+    share_global_other_co2 DOUBLE,
+    share_of_temperature_change_from_ghg DOUBLE,
+    temperature_change_from_ch4 DOUBLE,
+    temperature_change_from_co2 DOUBLE,
+    temperature_change_from_ghg DOUBLE,
+    temperature_change_from_n2o DOUBLE,
+    total_ghg DOUBLE,
+    total_ghg_excluding_lucf DOUBLE,
+    trade_co2 DOUBLE,
+    trade_co2_share DOUBLE
+) 
+STORED AS PARQUET 
+LOCATION 's3://trabajo1datalake/trusted/ourworldindata_org/owid-co2-data/';
+TBLPROPERTIES ('skip.header.line.count'='1');
+
+CREATE EXTERNAL TABLE dioxido_carbono (
+    ObjectId STRING,
+    Country STRING,
+    ISO2 STRING,
+    ISO3 STRING,
+    Indicator STRING,
+    Unit STRING,
+    Source STRING,
+    CTS_Code STRING,
+    CTS_Name STRING,
+    CTS_Full_Descriptor STRING,
+    Date_value DATE,
+    Value DOUBLE
+) 
+STORED AS PARQUET 
+LOCATION 's3://trabajo1datalake/trusted/climatedata_imf_org/dioxido_carbono/'
+TBLPROPERTIES ('skip.header.line.count'='1');
+
+CREATE EXTERNAL TABLE level_sea (
+    ObjectId STRING,
+    Country STRING,
+    ISO2 STRING,
+    ISO3 STRING,
+    Indicator STRING,
+    Unit STRING,
+    Source STRING,
+    CTS_Code STRING,
+    CTS_Name STRING,
+    CTS_Full_Descriptor STRING,
+    Measure STRING,
+    Date_value DATE,
+    Value DOUBLE
+) 
+STORED AS PARQUET 
+LOCATION 's3://trabajo1datalake/trusted/climatedata_imf_org/level_sea/'
+TBLPROPERTIES ('skip.header.line.count'='1');

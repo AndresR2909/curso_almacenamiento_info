@@ -1,0 +1,17 @@
+use trabajo1_refineddb;
+show tables;
+describe agg_co2_level_sea;
+select * from agg_co2_level_sea;
+
+select distinct(co2_range) from agg_co2_level_sea where co2_range;
+
+select * from agg_co2_level_sea where co2_range = 'High'; 
+
+SELECT COUNT(*) AS total_meses_con_alta_concentracion_co2 
+FROM agg_co2_level_sea 
+WHERE co2_range = 'High';
+
+SELECT Year, COUNT(*) AS total_meses_con_alta_concentracion_co2
+FROM agg_co2_level_sea
+WHERE co2_range = 'High'
+GROUP BY Year;
